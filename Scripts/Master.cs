@@ -5,6 +5,7 @@ namespace AU_CGPA_Calculater
     public class Master {
         private static Dictionary<string, int> grades = new() {
             {"o", 10}, {"a+", 9}, {"a", 8}, {"b+", 7}, {"b", 6}, {"c", 5},
+            {"O", 10}, {"A+", 9}, {"A", 8}, {"B+", 7}, {"B", 6}, {"C", 5},
         };
 
 
