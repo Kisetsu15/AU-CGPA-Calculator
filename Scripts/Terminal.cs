@@ -9,6 +9,16 @@
             return input;
         }
 
+        public static T Input<T> (string message = "" ) where T : struct {
+            string input = Input(message);
+            try {
+                return (T)Convert.ChangeType(input, typeof(T));
+            } catch ( Exception e ) {
+                DisplayError(e);
+                return default;
+            }
+        }
+
         public static string Input( string message = "" ) => Input(Console.ForegroundColor, message);
 
         public static void DisplayMessage( string message, ConsoleColor color ) {
