@@ -14,8 +14,9 @@ namespace AU_CGPA_Calculater
 
         private static void UserOptions() {
             while ( true ) {
-                Console.WriteLine("1. GPA\n2. CGPA\n3. Exit");
-                int choice = Terminal.Input<int>("Enter your choice: ");
+                Console.WriteLine("Options:");
+                Console.WriteLine(" 1. GPA\n 2. CGPA\n 3. Exit");
+                string choice = Terminal.Input("Enter your choice: ");
                 Action action = () => Console.WriteLine("Invalid choice. Please try again.");
 
                 if ( choice.Equals("1") ) {
@@ -25,6 +26,7 @@ namespace AU_CGPA_Calculater
                 } else if ( choice.Equals("3") ) {
                     break;
                 }
+
                 action.Invoke();
             }
         }
@@ -35,7 +37,7 @@ namespace AU_CGPA_Calculater
             
             float newCgpa = ( ( 2 * current ) + newGpa ) / 3;
 
-            Console.WriteLine("CGPA : " + newCgpa);
+            Console.WriteLine($"CGPA : {newCgpa}\n");
         }
 
         private static void GPA() {
@@ -75,7 +77,7 @@ namespace AU_CGPA_Calculater
 
             float gpa = sum / totalCredit;
 
-            Console.WriteLine("GPA : " + gpa);
+            Console.WriteLine($"GPA : {gpa}\n");
         }
     }
 }
