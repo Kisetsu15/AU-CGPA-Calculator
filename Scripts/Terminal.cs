@@ -22,12 +22,13 @@
         /// Prompts the user for input and attempts to convert it to a specified value type.
         /// </summary>
         /// <typeparam name="T">The type to which the input should be converted. Must be a value type.</typeparam>
+        /// <param name="color">The color of the console text for the prompt.</param>
         /// <param name="message">An optional message to display before reading input.</param>
         /// <returns>
         /// The input converted to the specified type, or the default value of the type if conversion fails.
         /// </returns>
-        public static T Input<T>( string message = "" ) where T : struct {
-            string input = Input(message);
+        public static T Input<T>( ConsoleColor color, string message = "" ) where T : struct {
+            string input = Input(color, message);
             try {
                 return (T)Convert.ChangeType(input, typeof(T));
             } catch ( Exception e ) {
@@ -42,6 +43,18 @@
         /// <param name="message">An optional message to display before reading input.</param>
         /// <returns>The input entered by the user as a string.</returns>
         public static string Input( string message = "" ) => Input(Console.ForegroundColor, message);
+
+        /// <summary>
+        /// Prompts the user for input and attempts to convert it to a specified value type.
+        /// </summary>
+        /// <typeparam name="T">The type to which the input should be converted. Must be a value type.</typeparam>
+        /// <param name="message">An optional message to display before reading input.</param>
+        /// <returns>
+        /// The input converted to the specified type, or the default value of the type if conversion fails.
+        /// </returns>
+        public static T Input<T>( string message = "" ) where T : struct {
+            return Input<T>(Console.ForegroundColor, message);
+        }
 
         /// <summary>
         /// Displays a message in the console with a specified text color.
