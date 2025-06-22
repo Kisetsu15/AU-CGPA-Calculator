@@ -1,4 +1,4 @@
-﻿using Utils;
+﻿using Kisetsu.Utils;
 
 namespace AU_CGPA_Calculater
 {
@@ -8,16 +8,16 @@ namespace AU_CGPA_Calculater
             {"O", 10}, {"A+", 9}, {"A", 8}, {"B+", 7}, {"B", 6}, {"C", 5},
         };
 
-        public static void Main( string[] args ) {
+        public static void Main() {
             UserOptions();
         }
 
         private static void UserOptions() {
             while ( true ) {
-                Console.WriteLine("Options:");
-                Console.WriteLine(" 1. GPA\n 2. CGPA\n 3. Exit");
+                Terminal.WriteLine("Options:");
+                Terminal.WriteLine(" 1. GPA\n 2. CGPA\n 3. Exit");
                 string choice = Terminal.Input("Enter your choice: ");
-                Action action = () => Console.WriteLine("Invalid choice. Please try again.");
+                Action action = () => Terminal.WriteLine("Invalid choice. Please try again.");
 
                 if ( choice.Equals("1") ) {
                     action = GPA;
@@ -37,7 +37,7 @@ namespace AU_CGPA_Calculater
             
             float newCgpa = ( ( 2 * current ) + newGpa ) / 3;
 
-            Console.WriteLine($"CGPA : {newCgpa}\n");
+            Terminal.WriteLine($"CGPA : {newCgpa}\n");
         }
 
         private static void GPA() {
@@ -61,23 +61,23 @@ namespace AU_CGPA_Calculater
                         } else if ( grade.Equals("u") || grade.Equals("U") ) {
                             break;
                         }
-                        Console.WriteLine("Invalid Grade");
+                        Terminal.WriteLine("Invalid Grade", ConsoleColor.Red);
                     }
                 }
                 
             } catch ( Exception e ) {
-                Terminal.DisplayError(e);
+                Terminal.Error(e);
                 return;
             }
 
             if ( totalCredit <= 0 ) {
-                Terminal.DisplayMessage("No valid credits entered.", ConsoleColor.Red);
+                Terminal.WriteLine("No valid credits entered.", ConsoleColor.Red);
                 return;
             }
 
             float gpa = sum / totalCredit;
 
-            Console.WriteLine($"GPA : {gpa}\n");
+            Terminal.WriteLine($"GPA : {gpa}\n");
         }
     }
 }
