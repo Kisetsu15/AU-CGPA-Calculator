@@ -1,7 +1,6 @@
 ﻿using Kisetsu.Utils;
 
-namespace AU_CGPA_Calculater
-{
+namespace AU_CGPA_Calculater {
     public class Master {
         private static Dictionary<string, int> grades = new() {
             {"o", 10}, {"a+", 9}, {"a", 8}, {"b+", 7}, {"b", 6}, {"c", 5},
@@ -15,9 +14,9 @@ namespace AU_CGPA_Calculater
         private static void UserOptions() {
             while ( true ) {
                 Terminal.WriteLine("Options:");
-                Terminal.WriteLine(" 1. GPA\n 2. CGPA\n 3. Exit");
+                Terminal.WriteLine(" 1. GPA\n 2. CGPA\n 3. Exit",ConsoleColor.Yellow);
                 string choice = Terminal.Input("Enter your choice: ");
-                Action action = () => Terminal.WriteLine("Invalid choice. Please try again.");
+                Action action = () => Terminal.WriteLine("Invalid choice. Please try again.", ConsoleColor.Red);
 
                 if ( choice.Equals("1") ) {
                     action = GPA;
@@ -37,7 +36,7 @@ namespace AU_CGPA_Calculater
             
             float newCgpa = ( ( 2 * current ) + newGpa ) / 3;
 
-            Terminal.WriteLine($"CGPA : {newCgpa}\n");
+            Terminal.WriteLine($"CGPA : {newCgpa}\n", ConsoleColor.Green);
         }
 
         private static void GPA() {
@@ -77,7 +76,7 @@ namespace AU_CGPA_Calculater
 
             float gpa = sum / totalCredit;
 
-            Terminal.WriteLine($"GPA : {gpa}\n");
+            Terminal.WriteLine($"GPA : {gpa}\n", ConsoleColor.Green);
         }
     }
 }
